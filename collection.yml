@@ -1,0 +1,172 @@
+logger:
+  level: debug #日志级别
+  path: /Users/kimmy/Desktop/WorkSpace/Work/Canway/Github/cloud-collection/cloud_collector.log
+  # path: /var/log/gse/cloud_collector.log
+socket:
+  socket_path: /var/run/ipc.state.report
+  queue_buffer: 2000
+  worker: 3
+cloud_collect_task:
+  win_stack:
+    concurrency: 50
+    clouds:
+      - id: 1
+        period: 1m
+        timeout: 1m
+        account: admin
+        password: passw0rd
+        server: 10.1.36.37
+        cluster:
+          data_id: 1500016
+          instances:
+            - fa894955-dd77-4f87-837e-18f834f324dd
+        host:
+          data_id: 1500016
+          instances:
+            - 476bce3f-1875-4ee0-b7fb-3344348f25a2
+            - 822089a2-57fc-4ff7-a961-7176c176af3a
+            - a1573591-0c44-478a-9aa6-ccbde36b19e1
+            - b25985cd-6dc2-4009-b908-da6ea9c8cc86
+            - dce0c08f-1919-489f-8bf0-fdb241e19850
+            - e51e47e2-a2b4-4c17-a29a-0066803cf7a4
+        storage:
+          data_id: 1500016
+          instances:
+            - 09c91ca1-fb82-4e8e-b195-e3f32abaf3b0
+            - 17df8cba-5183-493f-80dc-e6bf204a1068
+            - 1e2e59bd-d64b-473b-927e-06f7f6610ede
+        vm:
+          data_id: 1500016
+          instances:
+            - 0127e7e4-3615-4a26-9895-9d0a51595488
+            - 0ad8e0ce-c115-4695-b09e-969f548368bd
+            - 0d51b9dd-c3ac-40ba-bdb0-11e88fb6bfbc
+            - 0fe75314-3750-4a70-a38d-d68b29967573
+            - 1a220bf9-74c9-43cc-8021-81cf40ccedfc
+  vm_ware:
+    concurrency: 50
+    clouds:
+      - id: 1
+        period: 1m
+        server: 10.10.16.254
+        account: yidian@vsphere.local
+        password: CW@yidian2024!@#
+        cluster:
+          cluster_metric_namespace: cluster
+          cluster_metric_data_id: 1500016
+          cluster_event_data_id: 1500057
+          cluster_instances:
+            - domain-c1654
+          cluster_metrics:
+            - alias: cpu.usage.average
+              metric: cpu_usage_average
+            - alias: cpu.usagemhz.average
+              metric: cpu_usagemhz_average
+            - alias: cpu.totalmhz.average
+              metric: cpu_totalmhz_average
+            - alias: mem.usage.average
+              metric: mem_usage_average
+            - alias: mem.consumed.average
+              metric: mem_consumed_average
+            - alias: mem.totalmb.average
+              metric: mem_totalmb_average
+        host:
+          host_metric_namespace: host
+          host_metric_data_id: 1500016
+          host_event_data_id: 1500058
+          host_instances:
+            - host-9
+          host_metrics:
+            - alias: cpu.usage.average
+              metric: cpu_usage_average
+            - alias: cpu.usagemhz.average
+              metric: cpu_usagemhz_average
+            - alias: mem.usage.average
+              metric: mem_usage_average
+            - alias: mem.consumed.average
+              metric: mem_consumed_average
+            - alias: mem.totalCapacity.average
+              metric: mem_totalCapacity_average
+            - alias: disk.read.average
+              metric: disk_read_average
+            - alias: disk.write.average
+              metric: disk_write_average
+            - alias: disk.used.average
+              metric: disk_used_average
+            - alias: net.bytesRx.average
+              metric: net_bytesRx_average
+            - alias: net.bytesTx.average
+              metric: net_bytesTx_average
+            - alias: disk.numberRead.summation
+              metric: disk_numberRead_summation
+            - alias: disk.numberWrite.summation
+              metric: disk_numberWrite_summation
+        storage:
+          storage_metric_namespace: storage
+          storage_metric_data_id: 1500016
+          storage_event_data_id: 1500060
+          storage_instances:
+            - datastore-1496
+            - datastore-340
+            - datastore-515
+            - datastore-1424
+            - datastore-877
+            - datastore-154
+            - datastore-878
+            - datastore-508
+            - datastore-1321
+            - datastore-1659
+            - datastore-879
+            - datastore-1823
+            - datastore-1824
+          storage_metrics:
+            - alias: disk.used.average
+              metric: disk_used_average
+            - alias: disk.used.latest
+              metric: disk_used_latest
+            - alias: disk.capacity.latest
+              metric: disk_capacity_latest
+            - alias: disk.free.average
+              metric: disk_free_average
+        vm:
+          vm_metric_namespace: vm
+          vm_metric_data_id: 1500016
+          vm_event_data_id: 1500059
+          vm_instances:
+            - vm-1864
+            - vm-1342
+            - vm-205
+            - vm-389
+            - vm-386
+            - vm-729
+            - vm-185
+            - vm-193
+            - vm-176
+            - vm-155
+          vm_metrics:
+            - alias: cpu.usage.average
+              metric: cpu_usage_average
+            - alias: cpu.usagemhz.average
+              metric: cpu_usagemhz_average
+            - alias: mem.usage.average
+              metric: mem_usage_average
+            - alias: mem.consumed.average
+              metric: mem_consumed_average
+            - alias: mem.totalCapacity.average
+              metric: mem_totalCapacity_average
+            - alias: disk.used.average
+              metric: disk_used_average
+            - alias: disk.read.average
+              metric: disk_read_average
+            - alias: disk.write.average
+              metric: disk_write_average
+            - alias: net.bytesRx.average
+              metric: net_bytesRx_average
+            - alias: net.bytesTx.average
+              metric: net_bytesTx_average
+            - alias: power.power.average
+              metric: power_power_average
+            - alias: disk.numberRead.summation
+              metric: disk_numberRead_summation
+            - alias: disk.numberWrite.summation
+              metric: disk_numberWrite_summation
