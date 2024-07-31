@@ -16,6 +16,7 @@ import (
 
 // collectHost 收集 host 指标
 func (v *VMCollectorTask) collectHost() {
+	defer v.wg.Done()
 	client := v.getClient()
 	if client == nil {
 		logger.Errorln("unable to get client!")
@@ -162,5 +163,5 @@ func (v *VMCollectorTask) collectHost() {
 		logger.Errorf("unable to marshal MetricData, error: %s\n", err)
 		return
 	}
-	v.SendMsg(v.c.Host.HostMetricDataId, data, "主机", "Metrics")
+	v.sendMsg(v.c.Host.HostMetricDataId, data, "主机", "Metrics")
 }

@@ -51,6 +51,7 @@ func NewGseSocketService(c config.Socket) *GseSocket {
 
 func (g *GseSocket) StartService(c context.Context) {
 	ctx, cancel := context.WithCancel(c)
+	defer cancel()
 	g.ctx = ctx
 	g.cancel = cancel
 	g.wg.Add(1)

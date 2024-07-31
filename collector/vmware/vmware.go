@@ -4,7 +4,6 @@ import (
 	"cloud-collection/common"
 	"cloud-collection/logger"
 	"context"
-	"fmt"
 	"sync"
 	"time"
 
@@ -46,6 +45,7 @@ func (v *VMCollector) Run(ctx context.Context) {
 	}
 
 	context, cancel := context.WithCancel(ctx)
+	defer cancel()
 	count := 0
 	for _, cloud := range *v.Clouds {
 		count += 1
@@ -69,19 +69,14 @@ func process(c Cloud, ctx context.Context) {
 		wg.Done()
 	}()
 
-	fmt.Println(c.Period)
-
 	period := common.DefaultVMPeriod
 	if c.Period != "" {
 		if p, err := time.ParseDuration(c.Period); err == nil {
 			period = p
-		} else {
-			fmt.Println(err)
 		}
 	}
 
-	fmt.Println(period)
-
+	// 周期调度
 	ticker := time.NewTicker(period)
 	defer ticker.Stop()
 	for {
@@ -89,7 +84,7 @@ func process(c Cloud, ctx context.Context) {
 		case <-ctx.Done():
 			return
 		case <-ticker.C:
-			NewVMCollectorTask(c, ctx).collectHost()
+			NewVMCollectorTask(c, ctx).process()
 		}
 	}
 }

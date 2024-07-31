@@ -41,6 +41,7 @@ func NewCloudServiceController(c config.Config) *CloudServiceController {
 }
 
 func (svc *CloudServiceController) Run() {
+	defer svc.cancel()
 	// 非检测模式状态
 	if !*testFlag {
 		// 启动 GSEService

@@ -66,7 +66,19 @@ func (v *VMCollectorTask) hostMetricsConfig() []Metrics {
 }
 
 // SendMsg 发送数据到 GSESocket 消费
-func (v *VMCollectorTask) SendMsg(dataid int32, data []byte, des string, dataType string) {
+func (v *VMCollectorTask) sendMsg(dataid int32, data []byte, des string, dataType string) {
 	msg := gse.NewGseCommonMsg(data, dataid, 0, 0, 0)
 	socket.GlobalMsgCh <- msg
+}
+
+// process 拉起 VMCollectorTask 中的所有采集项目
+func (v *VMCollectorTask) process() {
+
+	// 并发的启动采集任务
+	if len(*v.c.Host.HostInstances) != 0 {
+		v.wg.Add(2)
+		go v.collectHost()
+		go v.collectEventByTime(v.c.Host.HostEventDataId, "host", *v.c.Host.HostInstances, "主机", v.c.Id, v.c.Period)
+	}
+
 }

@@ -11,6 +11,7 @@ type Cloud struct {
 	Account  string   `mapstructure:"account"`
 	Password string   `mapstructure:"password"`
 	Period   string   `mapstructure:"period"`
+	Timeout  string   `mapstructure:"timeout"`
 	Cluster  *Cluster `mapstructure:"cluster"`
 	Host     *Host    `mapstructure:"host"`
 	Storage  *Storage `mapstructure:"storage"`
@@ -76,4 +77,23 @@ type MetricsData struct {
 	Target    string             `json:"target"`
 	Dimension Dimension          `json:"dimension"`
 	Timestamp int64              `json:"timestamp"`
+}
+
+// 事件类型
+type EventInstance struct {
+	EventName string         `json:"event_name"`
+	Event     EventContent   `json:"event"`
+	Target    string         `json:"target"`
+	Dimension EventDimension `json:"dimension"`
+	Timestamp int64          `json:"timestamp"`
+}
+
+type EventContent struct {
+	Content string `json:"content"`
+}
+
+type EventDimension struct {
+	UserName   string `json:"user_name"`
+	CloudID    int    `json:"cloud_id"`
+	InstanceID string `json:"instanceid"`
 }

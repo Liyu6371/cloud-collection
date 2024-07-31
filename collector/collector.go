@@ -35,6 +35,7 @@ func (c *CloudTaskController) StartService(ctx context.Context) {
 		logger.Infoln("CollectorService stopped")
 	}()
 	c.ctx, c.cancel = context.WithCancel(ctx)
+	defer c.cancel()
 	// 启动 VM 处理
 	c.runCloudCollector(vmware.NewVMWareTask(c.cloudTaskConf.VMWare), vmware.Name)
 	<-ctx.Done()
