@@ -1,6 +1,7 @@
 package vmware
 
 import (
+	"cloud-collection/common"
 	"cloud-collection/logger"
 	"cloud-collection/socket"
 	"context"
@@ -34,8 +35,7 @@ func (v *VMCollectorTask) getClient() *govmomi.Client {
 		return v.client
 	}
 	// 开始创先 VMClient
-	// password := common.DecryptPassword(v.c.Password, common.VMAesKey)
-	password := v.c.Password
+	password := common.DecryptPassword(v.c.Password, common.VMAesKey)
 	u := &url.URL{
 		Scheme: "https",
 		Host:   v.c.Server,
