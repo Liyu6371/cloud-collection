@@ -14,7 +14,9 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 .DS_Store
-.idea
+**/.idea
+**/.vscode
+**/cloud_collector.log
 
 # Dependency directories (remove the comment below to include it)
 # vendor/

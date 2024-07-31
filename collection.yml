@@ -47,7 +47,7 @@ cloud_collect_task:
     concurrency: 50
     clouds:
       - id: 1
-        period: 1m
+        period: 10s
         server: 10.10.16.254
         account: yidian@vsphere.local
         password: CW@yidian2024!@#

@@ -10,6 +10,7 @@ type Cloud struct {
 	Server   string   `mapstructure:"server"`
 	Account  string   `mapstructure:"account"`
 	Password string   `mapstructure:"password"`
+	Period   string   `mapstructure:"period"`
 	Cluster  *Cluster `mapstructure:"cluster"`
 	Host     *Host    `mapstructure:"host"`
 	Storage  *Storage `mapstructure:"storage"`
@@ -60,10 +61,10 @@ type Dimension struct {
 	DeviceName string `json:"device_name"`
 }
 
-type MemTotalValue struct {
-	key           string
-	totalMemories int64
-}
+// type MemTotalValue struct {
+// 	key           string
+// 	totalMemories int64
+// }
 
 type storeSpace struct {
 	Capacity int64

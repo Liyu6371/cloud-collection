@@ -73,12 +73,25 @@ func InitLogger(c config.Logger) {
 
 // 检查日志路径是否可写
 func checkLogPathWritable(path string) error {
+	// 当文件存在的时候 默认为可写
+	if fileExists(path) {
+		return nil
+	}
+	// 尝试通过创建文件进行判断是否可写
 	file, err := os.Create(path)
 	if err != nil {
 		return err
 	}
 	file.Close()
 	return os.Remove(path)
+}
+
+func fileExists(filename string) bool {
+	info, err := os.Stat(filename)
+	if os.IsNotExist(err) {
+		return false
+	}
+	return !info.IsDir()
 }
 
 func Debug(args ...interface{}) {
